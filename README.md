@@ -50,7 +50,7 @@
 - 2026년 제21회 창의설계경진대회 — **대상**
 - WITHUS 프로그램 SMART Tournament — **대상**
 - 사물인터넷 혁신융합대학 In-Jeju Challenge — **대상(도지사상)**
-
+- 2026 SV Excellence in Technology & Operations Program(San Jose State University 해외연수) - **수료**
 ## Contact
 
 - **Email:** [sky900156@naver.com](mailto:sky900156@naver.com)
