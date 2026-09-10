@@ -61,6 +61,11 @@
 ### 2026 SV Excellence in Technology & Operations Program
 San Jose State University 해외연수 — **수료**
 
+### 세종대학교 컴퓨터공학과 조교
+
+- **2026** — C++ 과목 조교 · 고급프로그래밍활용 과목 조교 · 총괄조교
+- **2025** — 기초코딩 과목 실습조교
+
 ### 세종대학교 컴퓨터공학과 학생회
 
 - **2025** — 사무차장
