@@ -38,10 +38,22 @@
 
 ### PASSTIME
 
-행사 티켓의 생성과 참여, 결제 및 환불 과정을 관리하는 서비스입니다. 백엔드 개발을 담당하여 인증, 티켓, 결제, 환불, 소속 관리와 알림 기능을 구현했습니다.
+세종대학교 교내 행사의 입장권 발급부터 참가비 납부·환불까지를 한 흐름으로 관리하는 서비스입니다.  
+현재 **실사용** 중이며, iOS·Android 앱으로 신청·설치할 수 있습니다.
 
-- **Backend:** Node.js, Express, MongoDB, Mongoose
-- **Key Features:** JWT 인증, Firebase 푸시 알림, 예약 작업, AI 기반 결제 검토
+백엔드 개발을 담당하여 세종대 SSO·JWT 인증, 티켓/NFC 등록, 결제·환불, 소속·권한 관리, FCM 알림, 스케줄링 및 Gemini 기반 납부 증빙 AI 검토 API를 구현했습니다.
+
+- **Role:** Backend Developer
+- **Backend:** Node.js, Express, MongoDB, Mongoose, Docker, PM2
+- **App:** Flutter (iOS / Android)
+- **Key Features**
+  - 행사 코드 및 **NFC 태그**로 입장권 등록
+  - **Gemini** 기반 참가비 증빙 이미지 AI 검토 · 자동 승인 보조
+  - 세종대 SSO / JWT 인증, 역할 기반 소속 운영 (member / executive / leader / ROOT)
+  - 납부·환불 처리, FCM 푸시 알림, cron 기반 리마인더·데이터 정리
+- **Download**
+  - [iOS](https://buly.kr/2qb9qIM)
+  - [Android](https://buly.kr/1n6bxAk)
 - **Repositories:** [Server](https://github.com/SEJONG-PASSTIME/PASSTIME_Server) · [Android](https://github.com/SEJONG-PASSTIME/PASSTIME_Android)
 
 ## Experience
