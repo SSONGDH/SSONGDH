@@ -21,11 +21,11 @@
 
 | 프로젝트 | 소개 | 핵심 수치 | 구분 |
 |:---|:---|:---|:---:|
+| **XROSS** | 무인점포 미결제 탐지 통합 관제 시스템 | 행동 인식 **96.7%** · 교차검증 **95.0%** · 지연 **2.6초** | 캡스톤디자인 |
 | **PASSTIME** | 세종대 교내 행사 입장권·참가비 관리 앱 | 사용자 **108명** · 참가 이력 **53건** · 단체 **4곳** | 운영 중 |
 | **Congraduation** | 세종대학교 졸업인증 사이트 | 월 로그인 방문자 **110명** · 누적 **135명** | 운영 중 |
-| **XROSS** | 무인점포 미결제 탐지 통합 관제 시스템 | 행동 인식 **96.7%** · 교차검증 **95.0%** · 지연 **2.6초** | 캡스톤디자인 |
-| **나만의 냉장고** | 비지도 학습 기반 레시피 추천 앱 | 레시피 **1,132개** · 재료 **1,524개** · 군집 **10개** | 팀 프로젝트 |
 | **FinCue** | 소비 분석 기반 금융상품·카드 추천 서비스 | 금융상품 최대 **900건** · 카드 최대 **1,000건** 동기화 | 백엔드 |
+| **나만의 냉장고** | 비지도 학습 기반 레시피 추천 앱 | 레시피 **1,132개** · 재료 **1,524개** · 군집 **10개** | 팀 프로젝트 |
 
 <br />
 
@@ -52,116 +52,7 @@
 
 ## 🚀 Projects
 
-### 1. PASSTIME
-
-**세종대학교 교내 행사 입장권·참가비 관리 앱**
-
-![Users](https://img.shields.io/badge/Users-108-1D4F91?style=flat-square)
-![Participations](https://img.shields.io/badge/Participations-53-1D4F91?style=flat-square)
-![Organizations](https://img.shields.io/badge/Organizations-4-1D4F91?style=flat-square)
-![Platform](https://img.shields.io/badge/iOS_%2F_Android-Live-2F6FAD?style=flat-square)
-
-교내 행사의 입장권 발급과 참가비 납부·환불을 수기로 처리하며 생기던 누락과 지연을 줄이기 위해 만든 서비스입니다.
-
-세종대 SSO 로그인부터 NFC 입장, 납부 증빙 AI 검토, 푸시 알림, 배포 자동화까지 한 흐름으로 운영하고 있습니다.
-
-```mermaid
-flowchart LR
-    App["Flutter 앱<br/>iOS · Android"] --> API["Express API"]
-    API --> DB[("MongoDB")]
-    API --> AI["Gemini<br/>납부 증빙 검토"]
-    API --> Push["FCM<br/>푸시 알림"]
-    Git["GitHub push"] --> Hook["Webhook"] --> Pull["git pull"] --> PM2["pm2 restart"]
-```
-
-**실사용 행사** (2026.09 기준)
-
-- 세종대학교 컴퓨터공학과 개강총회
-- 세종대학교 ALOM 중앙개발동아리
-- 세종대학교 회화과 개강총회
-
-**Role — Backend Developer**
-
-- 세종대 SSO + JWT(쿠키) 인증, 역할 기반 권한 (member / executive / leader / ROOT)
-- 행사 코드 · **NFC(NDEF) 태그**로 입장권 등록 및 상태 관리
-- **Gemini** 기반 참가비 납부 증빙 이미지 AI 검토로 관리자 승인 보조
-- 납부·환불 처리, **FCM** 푸시 알림, **node-cron** 리마인더와 만료 데이터 자동 정리
-- **Docker + PM2** 운영, GitHub Webhook으로 `git pull` → `pm2 restart` 자동 배포
-
-<details>
-<summary><b>기술 스택 · 지표 상세</b></summary>
-
-<br />
-
-| 지표 | 수치 |
-|:---|:---:|
-| 가입 사용자 | 108명 |
-| 행사 참가 이력 | 53건 |
-| 등록 단체 | 4곳 |
-| 단체 가입 요청 | 2건 |
-
-| 구분 | 기술 |
-|:---|:---|
-| Backend | Node.js · Express · MongoDB / Mongoose · JWT · Multer · node-cron · Firebase Admin · Gemini API |
-| Infra | Docker · PM2 · GitHub Webhook |
-| App | Flutter (iOS / Android) · NFC · FCM |
-
-</details>
-
-🔗 [iOS 다운로드](https://buly.kr/2qb9qIM) · [Android 다운로드](https://buly.kr/1n6bxAk) · [Server](https://github.com/SEJONG-PASSTIME/PASSTIME_Server) · [Android](https://github.com/SEJONG-PASSTIME/PASSTIME_Android) · [iOS](https://github.com/SEJONG-PASSTIME/PASSTIME_iOS)
-
-<br />
-
-### 2. Congraduation
-
-**세종대학교 졸업인증 사이트**
-
-![Monthly Visitors](https://img.shields.io/badge/Monthly_Visitors-110-1D4F91?style=flat-square)
-![Total Visitors](https://img.shields.io/badge/Total_Visitors-135-1D4F91?style=flat-square)
-![Years](https://img.shields.io/badge/Admission_Year-2020~2026-1D4F91?style=flat-square)
-![Vercel](https://img.shields.io/badge/Vercel-Live-2F6FAD?style=flat-square&logo=vercel&logoColor=white)
-
-졸업요건과 공학인증(ABEEK) 충족 여부를 학생이 직접 계산하기 어렵다는 문제에서 출발했습니다.
-
-기이수성적 엑셀을 업로드하면 영역별 이수 현황, 부족 학점, 공학인증 충족 여부, 이수체계도, 학기별 시뮬레이션을 한 화면에서 확인할 수 있습니다.
-
-```mermaid
-flowchart LR
-    A["성적 XLSX 업로드<br/>최대 1MB"] --> B["졸업요건 판정<br/>유리한 기준 적용"]
-    B --> C["ABEEK 판정<br/>설계 순서 · 필수 면제"]
-    C --> D["대시보드<br/>부족 학점 · 이수체계도"]
-    D --> E["졸업 시뮬레이션"]
-```
-
-**방문자 지표**
-
-- 이번 달 로그인 방문자 **110명** (2026.09.01 ~ 09.30)
-- 누적 로그인 방문자 **135명** (출시일 기준)
-
-**주요 기능**
-
-- 입학연도·졸업연도 기준 중 **학생에게 유리한 요건**을 자동 적용
-- ABEEK 공학인증: 설계 과목 이수 순서, 신설 필수과목 면제, 소수점 학점 처리
-- 학과 코드 매핑 기반 학과별 요건 판정, scrape / OCR 기반 요건 데이터 수집
-
-<details>
-<summary><b>기술 스택 상세</b></summary>
-
-<br />
-
-| 구분 | 기술 |
-|:---|:---|
-| Backend | Java 17 · Spring Boot 3.5 · Spring Data JPA · H2 · Validation · springdoc(Swagger) · JWT |
-| Frontend | React 19 · TypeScript · Vite · React Router 7 · Tailwind CSS 4 |
-| Infra | Vercel |
-
-</details>
-
-🔗 [서비스 바로가기](https://congraduation-frontend.vercel.app) · [Frontend](https://github.com/congraduation-team/congraduation-frontend) · [Backend](https://github.com/congraduation-team/congraduation-backend)
-
-<br />
-
-### 3. XROSS · Team X-IV
+### 1. XROSS · Team X-IV
 
 **CCTV 너머, 결제까지 검증하는 무인점포 통합 관제 시스템**
 
@@ -169,6 +60,8 @@ flowchart LR
 ![Cross Validation](https://img.shields.io/badge/Cross_Validation-95.0%25-1D4F91?style=flat-square)
 ![F1](https://img.shields.io/badge/Macro_F1-0.90-1D4F91?style=flat-square)
 ![Latency](https://img.shields.io/badge/E2E_Latency-2.6s-1D4F91?style=flat-square)
+
+<img src="./assets/metrics-xross.svg" width="100%" alt="xross metrics" />
 
 엣지 Vision AI, IoT 무게 센서, POS 결제 데이터를 교차검증해 무인매장에서 **누가 · 무엇을 · 몇 개 · 결제했는가**를 실시간으로 판별합니다.
 
@@ -261,7 +154,168 @@ AI는 감지와 후보 생성만 맡고, 최종 미결제 판정은 서버가 �
 
 <br />
 
-### 4. 나만의 냉장고
+### 2. PASSTIME
+
+**세종대학교 교내 행사 입장권·참가비 관리 앱**
+
+![Users](https://img.shields.io/badge/Users-108-1D4F91?style=flat-square)
+![Participations](https://img.shields.io/badge/Participations-53-1D4F91?style=flat-square)
+![Organizations](https://img.shields.io/badge/Organizations-4-1D4F91?style=flat-square)
+![Platform](https://img.shields.io/badge/iOS_%2F_Android-Live-2F6FAD?style=flat-square)
+
+<img src="./assets/metrics-passtime.svg" width="100%" alt="passtime metrics" />
+
+교내 행사의 입장권 발급과 참가비 납부·환불을 수기로 처리하며 생기던 누락과 지연을 줄이기 위해 만든 서비스입니다.
+
+세종대 SSO 로그인부터 NFC 입장, 납부 증빙 AI 검토, 푸시 알림, 배포 자동화까지 한 흐름으로 운영하고 있습니다.
+
+```mermaid
+flowchart LR
+    App["Flutter 앱<br/>iOS · Android"] --> API["Express API"]
+    API --> DB[("MongoDB")]
+    API --> AI["Gemini<br/>납부 증빙 검토"]
+    API --> Push["FCM<br/>푸시 알림"]
+    Git["GitHub push"] --> Hook["Webhook"] --> Pull["git pull"] --> PM2["pm2 restart"]
+```
+
+**실사용 행사** (2026.09 기준)
+
+- 세종대학교 컴퓨터공학과 개강총회
+- 세종대학교 ALOM 중앙개발동아리
+- 세종대학교 회화과 개강총회
+
+**Role — Backend Developer**
+
+- 세종대 SSO + JWT(쿠키) 인증, 역할 기반 권한 (member / executive / leader / ROOT)
+- 행사 코드 · **NFC(NDEF) 태그**로 입장권 등록 및 상태 관리
+- **Gemini** 기반 참가비 납부 증빙 이미지 AI 검토로 관리자 승인 보조
+- 납부·환불 처리, **FCM** 푸시 알림, **node-cron** 리마인더와 만료 데이터 자동 정리
+- **Docker + PM2** 운영, GitHub Webhook으로 `git pull` → `pm2 restart` 자동 배포
+
+<details>
+<summary><b>기술 스택 · 지표 상세</b></summary>
+
+<br />
+
+| 지표 | 수치 |
+|:---|:---:|
+| 가입 사용자 | 108명 |
+| 행사 참가 이력 | 53건 |
+| 등록 단체 | 4곳 |
+| 단체 가입 요청 | 2건 |
+
+| 구분 | 기술 |
+|:---|:---|
+| Backend | Node.js · Express · MongoDB / Mongoose · JWT · Multer · node-cron · Firebase Admin · Gemini API |
+| Infra | Docker · PM2 · GitHub Webhook |
+| App | Flutter (iOS / Android) · NFC · FCM |
+
+</details>
+
+🔗 [iOS 다운로드](https://buly.kr/2qb9qIM) · [Android 다운로드](https://buly.kr/1n6bxAk) · [Server](https://github.com/SEJONG-PASSTIME/PASSTIME_Server) · [Android](https://github.com/SEJONG-PASSTIME/PASSTIME_Android) · [iOS](https://github.com/SEJONG-PASSTIME/PASSTIME_iOS)
+
+<br />
+
+### 3. Congraduation
+
+**세종대학교 졸업인증 사이트**
+
+![Monthly Visitors](https://img.shields.io/badge/Monthly_Visitors-110-1D4F91?style=flat-square)
+![Total Visitors](https://img.shields.io/badge/Total_Visitors-135-1D4F91?style=flat-square)
+![Years](https://img.shields.io/badge/Admission_Year-2020~2026-1D4F91?style=flat-square)
+![Vercel](https://img.shields.io/badge/Vercel-Live-2F6FAD?style=flat-square&logo=vercel&logoColor=white)
+
+<img src="./assets/metrics-congraduation.svg" width="100%" alt="congraduation metrics" />
+
+졸업요건과 공학인증(ABEEK) 충족 여부를 학생이 직접 계산하기 어렵다는 문제에서 출발했습니다.
+
+기이수성적 엑셀을 업로드하면 영역별 이수 현황, 부족 학점, 공학인증 충족 여부, 이수체계도, 학기별 시뮬레이션을 한 화면에서 확인할 수 있습니다.
+
+```mermaid
+flowchart LR
+    A["성적 XLSX 업로드<br/>최대 1MB"] --> B["졸업요건 판정<br/>유리한 기준 적용"]
+    B --> C["ABEEK 판정<br/>설계 순서 · 필수 면제"]
+    C --> D["대시보드<br/>부족 학점 · 이수체계도"]
+    D --> E["졸업 시뮬레이션"]
+```
+
+**주요 기능**
+
+- 입학연도·졸업연도 기준 중 **학생에게 유리한 요건**을 자동 적용
+- ABEEK 공학인증: 설계 과목 이수 순서, 신설 필수과목 면제, 소수점 학점 처리
+- 학과 코드 매핑 기반 학과별 요건 판정, scrape / OCR 기반 요건 데이터 수집
+
+<details>
+<summary><b>기술 스택 상세</b></summary>
+
+<br />
+
+| 구분 | 기술 |
+|:---|:---|
+| Backend | Java 17 · Spring Boot 3.5 · Spring Data JPA · H2 · Validation · springdoc(Swagger) · JWT |
+| Frontend | React 19 · TypeScript · Vite · React Router 7 · Tailwind CSS 4 |
+| Infra | Vercel |
+
+</details>
+
+🔗 [서비스 바로가기](https://congraduation-frontend.vercel.app) · [Frontend](https://github.com/congraduation-team/congraduation-frontend) · [Backend](https://github.com/congraduation-team/congraduation-backend)
+
+<br />
+
+### 4. FinCue
+
+**소비 분석 기반 금융상품·카드 추천 서비스**
+
+![Products](https://img.shields.io/badge/Financial_Products-up_to_900-1D4F91?style=flat-square)
+![Cards](https://img.shields.io/badge/Cards-up_to_1,000-1D4F91?style=flat-square)
+![Collections](https://img.shields.io/badge/MongoDB_Collections-14-1D4F91?style=flat-square)
+![LLM](https://img.shields.io/badge/LLM-gpt--4o--mini-2F6FAD?style=flat-square&logo=openai&logoColor=white)
+
+<img src="./assets/metrics-fincue.svg" width="100%" alt="fincue metrics" />
+
+사용자의 수입·지출을 분석해 **소비 패턴에 맞는 적금·카드를 추천**하고, 실제 소비 데이터를 근거로 답하는 LLM 금융 챗봇을 제공합니다.
+
+```mermaid
+flowchart LR
+    FSS["금융감독원 API<br/>예금 · 적금 · 연금저축"] --> DB[("MongoDB")]
+    CARD["카드 데이터 API"] --> DB
+    USER["지출 · 수입 기록"] --> DB
+    DB --> REC["소비 분석<br/>맞춤 추천 점수화"]
+    REC --> BOT["OpenAI 챗봇<br/>데이터 근거 답변"]
+```
+
+**사용한 API**
+
+| API | 용도 |
+|:---|:---|
+| 금융감독원 금융상품통합비교공시 API | 정기예금 · 적금 · 연금저축 금리·기간·한도 수집 (종류별 최대 300건) |
+| 카드고릴라 카드 데이터 | 카드명·연회비·전월실적·혜택 분야 수집 (최대 1,000건) |
+| OpenAI Chat Completions API | 소비·수입 요약을 프롬프트에 주입한 맞춤 금융 챗봇 |
+| Kakao OAuth2 로그인 | 카카오 토큰으로 사용자 조회 후 JWT 발급 |
+
+**주요 기능**
+
+- **소비 분석**: 월별 요약, 카테고리별 비율, 전월 대비 비교, 최근 12개월 추이, 일별 캘린더
+- **맞춤 추천**: 최근 3개월 최다 지출 카테고리와 카드 혜택 분야를 매칭하고, 적금 금리와 함께 점수화해 추천
+- **LLM 챗봇**: 질문 의도(추천·챌린지·커뮤니티)별로 필요한 데이터만 추가하고, 데이터에 있는 값만 인용하도록 규칙화
+- **절약 챌린지·배지**, 커뮤니티 게시글·댓글·좋아요·북마크
+
+<details>
+<summary><b>기술 스택 상세</b></summary>
+
+<br />
+
+| 구분 | 기술 |
+|:---|:---|
+| Backend | Java 17 · Spring Boot 3.5.7 · Spring Security · OAuth2 Client · JWT · RestTemplate · springdoc(Swagger) |
+| Database | MongoDB (Spring Data MongoDB) · H2 |
+| External API | 금융감독원 finlife API · 카드 데이터 API · OpenAI API · Kakao API |
+
+</details>
+
+<br />
+
+### 5. 나만의 냉장고
 
 **비지도 학습 기반 레시피 추천 앱**
 
@@ -269,6 +323,8 @@ AI는 감지와 후보 생성만 맡고, 최종 미결제 판정은 서버가 �
 ![Ingredients](https://img.shields.io/badge/Ingredients-1,524-1D4F91?style=flat-square)
 ![KMeans](https://img.shields.io/badge/KMeans-k=10-1D4F91?style=flat-square)
 ![Top](https://img.shields.io/badge/Recommend-Top_10-2F6FAD?style=flat-square)
+
+<img src="./assets/metrics-fridge.svg" width="100%" alt="fridge metrics" />
 
 냉장고에 있는 재료로 무엇을 만들지 고민하는 문제에서 출발했습니다.
 
@@ -313,57 +369,6 @@ flowchart LR
 </details>
 
 🔗 [Backend](https://github.com/SSONGDH/My_Own_Refrigerator_Backend) · [AI](https://github.com/SSONGDH/My_Own_Refrigerator_AI)
-
-<br />
-
-### 5. FinCue
-
-**소비 분석 기반 금융상품·카드 추천 서비스**
-
-![Products](https://img.shields.io/badge/Financial_Products-up_to_900-1D4F91?style=flat-square)
-![Cards](https://img.shields.io/badge/Cards-up_to_1,000-1D4F91?style=flat-square)
-![Collections](https://img.shields.io/badge/MongoDB_Collections-14-1D4F91?style=flat-square)
-![LLM](https://img.shields.io/badge/LLM-gpt--4o--mini-2F6FAD?style=flat-square&logo=openai&logoColor=white)
-
-사용자의 수입·지출을 분석해 **소비 패턴에 맞는 적금·카드를 추천**하고, 실제 소비 데이터를 근거로 답하는 LLM 금융 챗봇을 제공합니다.
-
-```mermaid
-flowchart LR
-    FSS["금융감독원 API<br/>예금 · 적금 · 연금저축"] --> DB[("MongoDB")]
-    CARD["카드 데이터 API"] --> DB
-    USER["지출 · 수입 기록"] --> DB
-    DB --> REC["소비 분석<br/>맞춤 추천 점수화"]
-    REC --> BOT["OpenAI 챗봇<br/>데이터 근거 답변"]
-```
-
-**사용한 API**
-
-| API | 용도 |
-|:---|:---|
-| 금융감독원 금융상품통합비교공시 API | 정기예금 · 적금 · 연금저축 금리·기간·한도 수집 (종류별 최대 300건) |
-| 카드고릴라 카드 데이터 | 카드명·연회비·전월실적·혜택 분야 수집 (최대 1,000건) |
-| OpenAI Chat Completions API | 소비·수입 요약을 프롬프트에 주입한 맞춤 금융 챗봇 |
-| Kakao OAuth2 로그인 | 카카오 토큰으로 사용자 조회 후 JWT 발급 |
-
-**주요 기능**
-
-- **소비 분석**: 월별 요약, 카테고리별 비율, 전월 대비 비교, 최근 12개월 추이, 일별 캘린더
-- **맞춤 추천**: 최근 3개월 최다 지출 카테고리와 카드 혜택 분야를 매칭하고, 적금 금리와 함께 점수화해 추천
-- **LLM 챗봇**: 질문 의도(추천·챌린지·커뮤니티)별로 필요한 데이터만 추가하고, 데이터에 있는 값만 인용하도록 규칙화
-- **절약 챌린지·배지**, 커뮤니티 게시글·댓글·좋아요·북마크
-
-<details>
-<summary><b>기술 스택 상세</b></summary>
-
-<br />
-
-| 구분 | 기술 |
-|:---|:---|
-| Backend | Java 17 · Spring Boot 3.5.7 · Spring Security · OAuth2 Client · JWT · RestTemplate · springdoc(Swagger) |
-| Database | MongoDB (Spring Data MongoDB) · H2 |
-| External API | 금융감독원 finlife API · 카드 데이터 API · OpenAI API · Kakao API |
-
-</details>
 
 <br />
 
