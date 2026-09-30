@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:0F2744,100:1D4F91&height=150&text=Song%20Daehyun&fontColor=FFFFFF&fontSize=44&fontAlignY=42&desc=DevOps%20%C2%B7%20Infrastructure%20Engineer&descSize=18&descAlignY=70" width="100%" />
+<img src="./assets/header.svg" width="100%" alt="Song Daehyeon · DevOps / Infrastructure Engineer" />
 
 <br />
 
