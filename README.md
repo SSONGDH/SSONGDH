@@ -21,25 +21,7 @@
 
 세종대학교 컴퓨터공학과에서 **만든 서비스를 실제 사용자에게 배포하고 끝까지 운영하는 경험**을 쌓아왔습니다.
 
-**🔧 배포부터 운영까지 직접 책임집니다**
-
-- PASSTIME 서버를 **Docker + PM2**로 운영하고, GitHub Webhook으로 `git pull` → `pm2 restart` 자동 배포를 구성했습니다.
-- node-cron으로 만료 티켓·결제 데이터를 자동 정리하고, FCM 푸시로 사용자 알림까지 운영합니다.
-
-**👥 실제 사용자가 쓰는 서비스를 운영하고 있습니다**
-
-- **PASSTIME**: 가입 사용자 108명, 컴퓨터공학과·회화과 개강총회와 ALOM 중앙개발동아리 행사에서 사용
-- **Congraduation**: 세종대학교 졸업인증 사이트, 누적 로그인 방문자 135명 (이번 달 110명)
-
-**🔗 하드웨어부터 서버, 앱까지 끝단을 연결합니다**
-
-- XROSS에서 ESP32 무게 센서 → MQTT → NestJS 서버 → SSE·FCM 알림으로 이어지는 실시간 파이프라인을 만들었습니다.
-- Gemini·OpenAI, 금융감독원 API, 식약처 공공데이터, Kakao 로그인 등 외부 API와 scikit-learn KMeans 추천 모델을 서비스에 연동했습니다.
-
-**🧑‍🏫 팀을 이끌고, 가르치며 성장합니다**
-
-- XROSS 팀장으로 4인 팀을 이끌어 창의설계경진대회·WITHUS SMART Tournament·In-Jeju Challenge에서 대상을 받았습니다.
-- 컴퓨터공학과 총괄조교와 C++·고급프로그래밍활용·기초코딩 조교로 후배들의 코딩 학습을 도왔습니다.
+<img src="./assets/about.svg" width="100%" alt="About Me: Live Service, Deploy &amp; Operate, End to End, Lead &amp; Teach" />
 
 <br />
 
@@ -215,6 +197,8 @@ AI는 감지와 후보 생성만 맡고, 최종 미결제 판정은 서버가 �
 ```mermaid
 flowchart LR
     App["Flutter 앱<br/>iOS · Android"] --> API["Express API"]
+    App --> Ads["AdMob<br/>배너 광고"]
+    App --> IAP["App Store · Google Play<br/>인앱 결제 · 정기 구독"]
     API --> DB[("MongoDB")]
     API --> AI["Gemini<br/>납부 증빙 검토"]
     API --> Push["FCM<br/>푸시 알림"]
@@ -235,6 +219,12 @@ flowchart LR
 - 납부·환불 처리, **FCM** 푸시 알림, **node-cron** 리마인더와 만료 데이터 자동 정리
 - **Docker + PM2** 운영, GitHub Webhook으로 `git pull` → `pm2 restart` 자동 배포
 
+**앱 수익화 — 광고 · 결제 · 구독 실연동**
+
+- **Google AdMob 광고**: 설정 화면 배너 광고, Android · iOS 광고 단위 분리, 로드 실패 시 광고 영역 자동 숨김
+- **인앱 결제**: `in_app_purchase`로 App Store · Google Play 스토어 결제 연동, 일시불 후원(소비성 상품) 구현
+- **정기 구독**: 월간 구독 상품 연동, 결제 상태(대기 · 완료 · 복원 · 취소 · 오류)별 처리와 구매 확정(`completePurchase`)
+
 <details>
 <summary><b>기술 스택 · 지표 상세</b></summary>
 
@@ -252,6 +242,7 @@ flowchart LR
 | Backend | Node.js · Express · MongoDB / Mongoose · JWT · Multer · node-cron · Firebase Admin · Gemini API |
 | Infra | Docker · PM2 · GitHub Webhook |
 | App | Flutter (iOS / Android) · NFC · FCM |
+| Monetization | Google AdMob (`google_mobile_ads`) · In-App Purchase (`in_app_purchase`) · 월간 정기 구독 |
 
 </details>
 
